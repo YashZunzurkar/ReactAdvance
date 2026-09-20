@@ -1,21 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
+import React, { useContext, useEffect } from 'react'
 import Header from './Components/Header'
-// import Pagination from './Components/Pagination'
+import Blogs from './Components/Blogs'
+import Pagination from './Components/Pagination'
+import { AppContext } from './Context/AppContext'
 
+export const App = () => {
+ const { fetchBlogPages } = useContext(AppContext);
 
-function App() {
-  
+useEffect(() => {
+  fetchBlogPages();
+}, [])
 
   return (
-    <div> 
-      <Header></Header>
+    <div className="w-full h-full flex flex-col items-center justify-center gap-x-1">
+      <Header />
+      <Blogs />
+      <Pagination />
     </div>
   )
 }
 
-export default App
+export default App;
